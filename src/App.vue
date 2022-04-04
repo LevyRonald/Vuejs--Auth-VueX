@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import BarraNavegacao from '../src/components/BarraNavegacao.vue';
+import BarraNavegacao from "@/components/BarraNavegacao";
 
 export default {
   components: {
     BarraNavegacao
-  }
-}
+  } 
+};
 </script>

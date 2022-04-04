@@ -22,7 +22,7 @@ export default {
   },
   computed: {
     usuarioestaLogado() {
-      return this.$store.state.token;
+      return Boolean(localStorage.getItem('token'))
     }
   }
 };

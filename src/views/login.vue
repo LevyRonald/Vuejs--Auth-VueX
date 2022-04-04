@@ -7,35 +7,37 @@
                 <input type="email" class="form-control" v-model="usuario.email">
             </div>
             <div class="form-group">
-                <label for="senha">senha</label>
-                <input type="Password" class="form-control" v-model="usuario.senha">
+                <label for="senha">Senha</label>
+                <input type="password" class="form-control" v-model="usuario.senha">
             </div>
-            <button type="submit" class="btn btn-primary brn-block">Logar</button>
+            <button type="submite" class="btn btn-primary brn-block">Logar</button>
             <router-link :to="{ name: 'novo.usuario' }">
-                Não possui um cadastro, cadastre-se aqui!
+                 Não possui um cadastro, cadastre-se aqui!
             </router-link>
         </form>
     </div>
 </template>
-<script>
 
+<script>
 export default {
-    data () {
+    data() {
         return {
             usuario: {}
         }
     },
-    methods: {
-        efetuarLogin () {
+    methods:{
+        efetuarLogin(){
             this.$http.post('auth/login', this.usuario)
-                .then(response =>{
-                    console.log(response)
-                    localStorage.setItem('token', response.data.access_token)
-                    this.$router.push({ name: 'gerentes' })
+            .then(response => {
+                console.log(response)
+                this.$store.commit('DEFINIR_USUARIO_LOGADO', {
+                  token: response.data.access_token,
+                  usuario: response.data.user
                 })
-                .catch(erro => console.log(erro))
-        }   
+                this.$router.push({ name: 'gerentes' })
+            })
+            .catch(erro => console.log(erro))
+        }
     }
 }
-
 </script>

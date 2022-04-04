@@ -27,17 +27,16 @@ export default {
         senha: "",
         email: ""
       }
-    };
+    }
   },
   methods: {
-    enviarFormulario() {
-    this.$http.post("auth/register", this.usuario)
-        .then(resposta =>{
-          console.log(resposta)
-          this.$router.push({ name: 'login' })
-        })
-        .catch(erro => console.log(erro))
+    enviarFormulario () {
+     this.$http.post('auth/register',this.usuario)
+           .then(resposta => { 
+                console.log(resposta)
+                this.$router.push({ name: 'login' })
+            })
     }
-  }
 }
+};
 </script>
